@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SplashScreenActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+
+        <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                app:srcCompat="@drawable/app_icon" />
+
+        <TextView
+                android:id="@+id/lblINLA"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:text="Online News Reader Application - Kotlin"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="@id/imgLogo" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center">
+
+        <TextView
+                android:id="@+id/lblPowerBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Power_by"
+                android:textSize="10sp" />
+
+        <TextView
+                android:id="@+id/lblDesmond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Desmond Wong"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lblPowerBy"
+                tools:ignore="MissingConstraints" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
