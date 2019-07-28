@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "602370170946",
+    "firebase_url": "https://newsreader-56d8b.firebaseio.com",
+    "project_id": "newsreader-56d8b",
+    "storage_bucket": "newsreader-56d8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602370170946:android:4497a3b6b2856417",
+        "android_client_info": {
+          "package_name": "com.example.kotlinnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602370170946-j5ron73s52q98k13qq08ojjo771ksuf2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kotlinnews",
+            "certificate_hash": "efbb3e7dcae3ed7f0cf0d26c6da240766fd46e3b"
+          }
+        },
+        {
+          "client_id": "602370170946-qa9u8lt357u6j3hmho8sdhudda5iv843.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmyMZ93pwhkoohW0E_PeXD5UudCTKrYz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602370170946-qa9u8lt357u6j3hmho8sdhudda5iv843.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

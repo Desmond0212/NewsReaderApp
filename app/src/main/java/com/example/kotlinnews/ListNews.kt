@@ -64,29 +64,16 @@ class ListNews : AppCompatActivity()
             mService.getNewsFromSource(Common.getNewsAPI(source!!))
                 .enqueue(object: Callback<News> {
 
-                    override fun onFailure(call: Call<News>, t: Throwable)
-                    {
-
-                    }
+                    override fun onFailure(call: Call<News>, t: Throwable) {}
 
                     override fun onResponse(call: Call<News>, response: Response<News>)
                     {
                         dialog.dismiss()
 
                         //Fetch 1st article to Hot news
-                        if (response.body()?.articles!![0].urlToImage != null)
-                        {
-                            Picasso.with(baseContext)
-                                .load(response.body()?.articles!![0].urlToImage)
-                                .into(top_image)
-                        }
-                        else
-                        {
-                            Picasso.with(baseContext)
-                                .load(R.color.bright_foreground_disabled_material_light)
-                                .into(top_image)
-                        }
-
+                        Picasso.get(/*baseContext*/)
+                            .load(response.body()?.articles!![0].urlToImage)
+                            .into(top_image)
 
                         top_title.text = response.body()!!.articles!![0].title
                         top_author.text = response.body()!!.articles!![0].author
@@ -115,7 +102,7 @@ class ListNews : AppCompatActivity()
                     override fun onResponse(call: Call<News>, response: Response<News>)
                     {
                         //Fetch 1st article to Hot news
-                        Picasso.with(baseContext)
+                        Picasso.get(/*baseContext*/)
                             .load(response.body()?.articles!![0].urlToImage)
                             .into(top_image)
 
