@@ -1,64 +1,69 @@
 package com.example.kotlinnews
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.view.Menu
-import android.view.MenuItem
-import com.example.kotlinnews.Adapter.ViewHolder.ListHistoryViewHolder
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.view.*
+import com.example.kotlinnews.Adapter.ViewHolder.ListHistoryAdapter
 import com.example.kotlinnews.Model.HistoryNews
-import com.example.kotlinnews.VO.NewsVO
 import com.google.firebase.database.*
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_history.*
 
 class HistoryActivity : AppCompatActivity()
 {
-    val adapter = GroupAdapter<ViewHolder>()
+    internal var items: MutableList<HistoryNews> = ArrayList()
+    lateinit var layoutManager: LinearLayoutManager
+    lateinit var adapter: ListHistoryAdapter
+    lateinit var alertDialog: AlertDialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
         supportActionBar?.title = "History"
 
-        recyclerViewHistory.adapter = adapter
-        recyclerViewHistory.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        alertDialog = SpotsDialog(this)
+        alertDialog.show()
 
-        //Adapter Click Listener
-        adapter.setOnItemClickListener { item, view ->
-            /*Toast.makeText(baseContext, "Slide Left to Delete the item.", Toast.LENGTH_SHORT).show()*/
-            val intent =  Intent(baseContext, HistoryNewsActivity::class.java)
+        recyclerViewHistory.setHasFixedSize(true)
+        layoutManager = LinearLayoutManager(this)
+        recyclerViewHistory.layoutManager = layoutManager
 
-            intent.putExtra("webViewUrl", NewsVO.getInstance().historyNewsUrl)
-            startActivity(intent)
-        }
-
-        latestNewsListener()
+        fetchFirebaseData()
     }
 
-    private fun latestNewsListener()
+    private fun fetchFirebaseData()
     {
-        val ref = FirebaseDatabase.getInstance().getReference("news")
-        ref.addChildEventListener(object: ChildEventListener
-        {
-            override fun onChildAdded(p0: DataSnapshot, p1: String?)
+        val db = FirebaseDatabase.getInstance().getReference("news")
+
+        db.addListenerForSingleValueEvent(object:ValueEventListener{
+            override fun onCancelled(p0: DatabaseError)
             {
-                val newsData = p0.getValue(HistoryNews::class.java) ?: return
-                adapter.add(ListHistoryViewHolder(newsData))
+                Log.d("ERROR", "" + p0.message)
             }
 
-            override fun onChildChanged(p0: DataSnapshot, p1: String?)
+            override fun onDataChange(p0: DataSnapshot)
             {
-                val newsData = p0.getValue(HistoryNews::class.java) ?: return
-                adapter.add(ListHistoryViewHolder(newsData))
+                for (itemSnapShot in p0.children)
+                {
+                    val item = itemSnapShot.getValue(HistoryNews::class.java)
+                    if (item != null)
+                    {
+                        items.add(item)
+
+                        adapter = ListHistoryAdapter(items, baseContext)
+                        adapter.notifyDataSetChanged()
+                        recyclerViewHistory.adapter = adapter
+
+                        alertDialog.dismiss()
+                    }
+                }
             }
 
-            override fun onCancelled(p0: DatabaseError) {}
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
-            override fun onChildRemoved(p0: DataSnapshot) {}
         })
     }
 
