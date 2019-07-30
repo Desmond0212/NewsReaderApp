@@ -78,6 +78,7 @@ class ListNewsAdapter(val articleList: MutableList<Article>, private val context
 
                 NewsVO.getInstance().newsTitle = articleList[position].title
                 NewsVO.getInstance().urlToImage = articleList[position].urlToImage
+                NewsVO.getInstance().url = articleList[position].url
 
                 detail.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(detail)

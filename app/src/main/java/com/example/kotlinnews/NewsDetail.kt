@@ -49,10 +49,11 @@ class NewsDetail : AppCompatActivity()
     {
         val title = NewsVO.getInstance().newsTitle.toString()
         val image = NewsVO.getInstance().urlToImage.toString()
+        val url = NewsVO.getInstance().url.toString()
         val timestamp = System.currentTimeMillis() / 1000
         val ref = FirebaseDatabase.getInstance().getReference("news")
         val newsId = ref.push().key.toString()
-        val historyNews = HistoryNews(newsId, timestamp, title, image)
+        val historyNews = HistoryNews(newsId, timestamp, title, image, url)
 
         ref.child(newsId).setValue(historyNews).addOnSuccessListener {
             Log.d("NewsDetail", "News Details Saved to Firebase!")

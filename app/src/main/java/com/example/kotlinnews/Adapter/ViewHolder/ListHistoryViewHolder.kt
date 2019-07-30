@@ -2,6 +2,7 @@ package com.example.kotlinnews.Adapter.ViewHolder
 
 import com.example.kotlinnews.Model.HistoryNews
 import com.example.kotlinnews.R
+import com.example.kotlinnews.VO.NewsVO
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -18,6 +19,7 @@ class ListHistoryViewHolder(val newsData: HistoryNews): Item<ViewHolder>()
         viewHolder.itemView.article_title_history.text = newsData.title
         val targetImageView = viewHolder.itemView.article_image_history
         Picasso.get().load(newsData.image).into(targetImageView)
+        NewsVO.getInstance().historyNewsUrl = newsData.url
 
         val ref = FirebaseDatabase.getInstance().getReference("/news")
 

@@ -22,4 +22,6 @@ class NewsVO private constructor()
 
     var newsTitle: String? = null
     var urlToImage: String? = null
+    var url: String? = null
+    var historyNewsUrl: String? = null
 }

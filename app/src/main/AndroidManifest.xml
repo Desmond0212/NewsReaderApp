@@ -16,8 +16,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HistoryActivity"
-                  android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".HistoryNewsActivity">
+        </activity>
+        <activity
+                android:name=".HistoryActivity"
+                android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
         <activity android:name=".MainActivity"/> <!-- SplashScreenActivity -->
         <activity android:name=".NewsDetail"/>
         <activity android:name=".ListNews"/>

@@ -1,13 +1,14 @@
 package com.example.kotlinnews
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.example.kotlinnews.Adapter.ViewHolder.ListHistoryViewHolder
 import com.example.kotlinnews.Model.HistoryNews
+import com.example.kotlinnews.VO.NewsVO
 import com.google.firebase.database.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -28,7 +29,11 @@ class HistoryActivity : AppCompatActivity()
 
         //Adapter Click Listener
         adapter.setOnItemClickListener { item, view ->
-            Toast.makeText(baseContext, "Slide Left to Delete the item.", Toast.LENGTH_SHORT).show()
+            /*Toast.makeText(baseContext, "Slide Left to Delete the item.", Toast.LENGTH_SHORT).show()*/
+            val intent =  Intent(baseContext, HistoryNewsActivity::class.java)
+
+            intent.putExtra("webViewUrl", NewsVO.getInstance().historyNewsUrl)
+            startActivity(intent)
         }
 
         latestNewsListener()
