@@ -4,13 +4,19 @@ import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import com.example.kotlinnews.Adapter.ViewHolder.ListHistoryAdapter
 import com.example.kotlinnews.Model.HistoryNews
 import com.google.firebase.database.*
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_history.*
+import com.google.firebase.database.DataSnapshot
+
+
 
 class HistoryActivity : AppCompatActivity()
 {
@@ -34,6 +40,24 @@ class HistoryActivity : AppCompatActivity()
         recyclerViewHistory.layoutManager = layoutManager
 
         fetchFirebaseData()
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT)
+        {
+            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean
+            {
+                return false
+            }
+
+            override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int)
+            {
+                (adapter).removeItem(p0)
+
+                Toast.makeText(baseContext, "One news has been deleted temporary.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerViewHistory)
     }
 
     private fun fetchFirebaseData()

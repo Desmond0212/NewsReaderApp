@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_marginStart="3dp"
+                android:layout_marginStart="5dp"
                 android:src="@drawable/icn_news"
                 android:scaleType="centerCrop"/>
 
@@ -41,13 +41,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:text="News Title"/>
-
-            <!--<com.github.curioustechizen.ago.RelativeTimeTextView
-                    android:id="@+id/article_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textStyle="italic"/>-->
 
         </LinearLayout>
 
