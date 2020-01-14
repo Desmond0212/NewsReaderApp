@@ -15,8 +15,7 @@ import com.google.firebase.database.*
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_history.*
 import com.google.firebase.database.DataSnapshot
-
-
+import android.app.Activity
 
 class HistoryActivity : AppCompatActivity()
 {
@@ -24,6 +23,27 @@ class HistoryActivity : AppCompatActivity()
     lateinit var layoutManager: LinearLayoutManager
     lateinit var adapter: ListHistoryAdapter
     lateinit var alertDialog: AlertDialog
+
+
+    companion object
+    {
+        private var instance: HistoryActivity? = null
+
+        fun getInstance(): HistoryActivity
+        {
+            synchronized(HistoryActivity::class.java)
+            {
+                if (instance == null)
+                {
+                    instance = HistoryActivity()
+                }
+
+                return instance!!
+            }
+        }
+
+        var fa: Activity? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -58,6 +78,8 @@ class HistoryActivity : AppCompatActivity()
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerViewHistory)
+
+        fa = this
     }
 
     private fun fetchFirebaseData()

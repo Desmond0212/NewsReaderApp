@@ -24,6 +24,7 @@
         <activity android:name=".MainActivity"/> <!-- SplashScreenActivity -->
         <activity android:name=".NewsDetail"/>
         <activity android:name=".ListNews"/>
+        <activity android:name=".DialogActivity"/>
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

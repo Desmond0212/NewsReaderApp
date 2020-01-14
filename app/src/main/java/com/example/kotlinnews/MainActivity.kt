@@ -4,22 +4,18 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-/*import android.support.v7.app.AlertDialog*/
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.example.kotlinnews.Adapter.ViewHolder.ListSourceAdapter
 import com.example.kotlinnews.Common.Common
 import com.example.kotlinnews.Interface.NewsService
-import com.example.kotlinnews.Model.News
 import com.example.kotlinnews.Model.WebSite
-import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import dmax.dialog.SpotsDialog
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity()
 {

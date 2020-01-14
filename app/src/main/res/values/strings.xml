@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">KotlinNews</string>
 
-    <string name="history_swipe_left"><i>Swipe <b>left</b> to delete item.</i></string>
+    <string name="history_swipe_left"><i><b>Long</b> press to delete item.</i></string>
 </resources>
